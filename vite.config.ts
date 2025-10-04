@@ -17,6 +17,12 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\/wow-icons/, '/images/wow/icons/large'),
         secure: false
+      },
+      '/api/affix-eu': {
+        target: 'https://mythicpl.us',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/affix-eu/, '/affix-eu'),
+        secure: false
       }
     }
   },
