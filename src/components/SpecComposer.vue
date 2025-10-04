@@ -12,7 +12,7 @@ const loading = ref(true)
 
 const { groupSlots, stats, clearGroup } = useSpecComposition()
 
-const CACHE_KEY = 'wow-classes-cache'
+const CACHE_KEY = 'wow-specs-cache'
 const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000
 
 const cloneSpec = (original: WowSpecData) => {
@@ -108,8 +108,15 @@ onMounted(async () => {
           </div>
 
           <div class="drop-zone">
-            <VueDraggable v-for="(slot, index) in groupSlots" :key="index" v-model="groupSlots[index]" :animation="200"
-              :group="{ name: 'specs' }" @move="checkSlotMove" class="slot-draggable">
+            <VueDraggable
+              v-for="(slot, index) in groupSlots"
+              :key="index"
+              v-model="groupSlots[index]"
+              :animation="200"
+              :group="{ name: 'specs' }"
+              @move="checkSlotMove"
+              class="slot-draggable"
+            >
               <Card class="slot-card" :class="{ filled: slot.length > 0 }">
                 <template #content>
                   <div class="slot-content">
@@ -166,9 +173,19 @@ onMounted(async () => {
 
         <div class="right-section">
           <h2 class="section-title">Available Specializations</h2>
-          <VueDraggable v-model="availableSpecs" :animation="200" :clone="cloneSpec" :sort="false"
-            :group="{ name: 'specs', pull: 'clone', put: false }" class="specs-list">
-            <Card v-for="spec in availableSpecs" :key="spec.slug" class="spec-card">
+          <VueDraggable
+            v-model="availableSpecs"
+            :animation="200"
+            :clone="cloneSpec"
+            :sort="false"
+            :group="{ name: 'specs', pull: 'clone', put: false }"
+            class="specs-list"
+          >
+            <Card
+              v-for="spec in availableSpecs"
+              :key="spec.slug"
+              class="spec-card"
+            >
               <template #content>
                 <div class="spec-content">
                   <img :src="spec.iconUrl" :alt="spec.name" class="spec-icon" />
@@ -376,19 +393,15 @@ onMounted(async () => {
 
 .specs-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  margin-top: 0.8rem;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
 
 .spec-card {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
   cursor: grab;
-  max-width: 150px;
 }
 
 .spec-card:active {

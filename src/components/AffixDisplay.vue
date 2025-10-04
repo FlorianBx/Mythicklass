@@ -109,11 +109,6 @@ onMounted(async () => {
   overflow: hidden;
 }
 
-.affix-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-}
-
 .card-content,
 .skeleton-content {
   display: flex;
