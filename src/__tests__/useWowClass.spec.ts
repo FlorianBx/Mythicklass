@@ -20,7 +20,8 @@ describe('fetchWowClassData', () => {
       iconUrl: '/api/wow-icons/classicon_warrior.jpg',
       color: '#C79C6E',
       buffs: ['Battle Shout', 'Commanding Shout'],
-      counterSpells: ['Pummel', 'Storm Bolt'],
+      interrupts: ['Pummel'],
+      crowdControl: ['Storm Bolt', 'Intimidating Shout'],
     })
   })
 
@@ -36,7 +37,9 @@ describe('fetchWowClassData', () => {
       iconUrl: '/api/wow-icons/classicon_mage.jpg',
       color: '#69CCF0',
       buffs: ['Arcane Intellect', 'Time Warp'],
-      counterSpells: ['Counterspell', 'Polymorph'],
+      interrupts: ['Counterspell'],
+      crowdControl: ['Polymorph', 'Ring of Frost'],
+      hasHeroism: true,
     })
   })
 

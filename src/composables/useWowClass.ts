@@ -18,7 +18,9 @@ export interface WowClassData {
   name: string
   iconUrl: string
   buffs?: string[]
-  counterSpells?: string[]
+  interrupts?: string[]
+  crowdControl?: string[]
+  hasHeroism?: boolean
   color?: string
 }
 
@@ -43,79 +45,95 @@ export const classDataMap: Record<WowClassSlug, Omit<WowClassData, 'iconUrl' | '
     name: 'Warrior',
     color: '#C79C6E',
     buffs: ['Battle Shout', 'Commanding Shout'],
-    counterSpells: ['Pummel', 'Storm Bolt'],
+    interrupts: ['Pummel'],
+    crowdControl: ['Storm Bolt', 'Intimidating Shout'],
   },
   paladin: {
     name: 'Paladin',
     color: '#F58CBA',
     buffs: ['Blessing of Kings', 'Devotion Aura'],
-    counterSpells: ['Hammer of Justice', 'Rebuke'],
+    interrupts: ['Rebuke'],
+    crowdControl: ['Hammer of Justice', 'Blinding Light'],
   },
   hunter: {
     name: 'Hunter',
     color: '#ABD473',
     buffs: ['Aspect of the Wild'],
-    counterSpells: ['Counter Shot', 'Freezing Trap'],
+    interrupts: ['Counter Shot'],
+    crowdControl: ['Freezing Trap', 'Intimidation'],
   },
   rogue: {
     name: 'Rogue',
     color: '#FFF569',
     buffs: ['Tricks of the Trade'],
-    counterSpells: ['Kick', 'Blind', 'Gouge'],
+    interrupts: ['Kick'],
+    crowdControl: ['Blind', 'Gouge', 'Kidney Shot'],
   },
   priest: {
     name: 'Priest',
     color: '#FFFFFF',
     buffs: ['Power Word: Fortitude', 'Power Infusion'],
-    counterSpells: ['Silence', 'Psychic Scream'],
+    interrupts: ['Silence'],
+    crowdControl: ['Psychic Scream', 'Mind Control'],
   },
   deathknight: {
     name: 'Death Knight',
     color: '#C41F3B',
     buffs: ['Anti-Magic Zone'],
-    counterSpells: ['Mind Freeze', 'Asphyxiate'],
+    interrupts: ['Mind Freeze'],
+    crowdControl: ['Asphyxiate', 'Gorefiend\'s Grasp'],
   },
   shaman: {
     name: 'Shaman',
     color: '#0070DE',
     buffs: ['Bloodlust', 'Wind Rush Totem'],
-    counterSpells: ['Wind Shear', 'Hex'],
+    interrupts: ['Wind Shear'],
+    crowdControl: ['Hex', 'Capacitor Totem'],
+    hasHeroism: true,
   },
   mage: {
     name: 'Mage',
     color: '#69CCF0',
     buffs: ['Arcane Intellect', 'Time Warp'],
-    counterSpells: ['Counterspell', 'Polymorph'],
+    interrupts: ['Counterspell'],
+    crowdControl: ['Polymorph', 'Ring of Frost'],
+    hasHeroism: true,
   },
   warlock: {
     name: 'Warlock',
     color: '#9482C9',
     buffs: ['Soulstone', 'Gateway'],
-    counterSpells: ['Spell Lock', 'Fear'],
+    interrupts: ['Spell Lock'],
+    crowdControl: ['Fear', 'Banish'],
   },
   monk: {
     name: 'Monk',
     color: '#00FF96',
     buffs: ['Mystic Touch'],
-    counterSpells: ['Spear Hand Strike', 'Leg Sweep'],
+    interrupts: ['Spear Hand Strike'],
+    crowdControl: ['Leg Sweep', 'Paralysis'],
   },
   druid: {
     name: 'Druid',
     color: '#FF7D0A',
     buffs: ['Mark of the Wild', 'Innervate'],
-    counterSpells: ['Solar Beam', 'Bash'],
+    interrupts: ['Solar Beam'],
+    crowdControl: ['Bash', 'Mighty Bash', 'Typhoon'],
   },
   demonhunter: {
     name: 'Demon Hunter',
     color: '#A330C9',
     buffs: ['Chaos Brand'],
-    counterSpells: ['Disrupt', 'Chaos Nova'],
+    interrupts: ['Disrupt'],
+    crowdControl: ['Chaos Nova', 'Imprison'],
   },
   evoker: {
     name: 'Evoker',
     color: '#33937F',
     buffs: ['Blessing of the Bronze'],
-    counterSpells: ['Quell', 'Wing Buffet'],
+    interrupts: ['Quell'],
+    crowdControl: ['Wing Buffet', 'Deep Breath'],
+    hasHeroism: true,
   },
 }
 

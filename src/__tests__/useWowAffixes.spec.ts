@@ -33,7 +33,7 @@ describe('fetchWowAffixes', () => {
 
     const data = await fetchWowAffixes()
 
-    expect(mockFetch).toHaveBeenCalledWith('https://mythicpl.us/affix-eu')
+    expect(mockFetch).toHaveBeenCalledWith('/api/affix-eu')
     expect(data).toEqual(mockResponse)
   })
 

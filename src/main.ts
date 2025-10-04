@@ -6,6 +6,7 @@ import PrimeVue from 'primevue/config'
 import { MyThickKlassPreset } from './theme'
 import ToastService from 'primevue/toastservice'
 import 'primeicons/primeicons.css'
+import './main.css'
 
 const app = createApp(App)
 

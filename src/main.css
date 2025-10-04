@@ -2,9 +2,9 @@
 
 :root {
   --font-title: 2.5rem;
-  --font-subtitle: 1.5rem;
-  --font-body-large: 1.2rem;
-  --font-body: 1.1rem;
+  --font-subtitle: 1.2rem;
+  --font-body-large: 0.5rem;
+  --font-body: 1rem;
   --font-body-small: 0.95rem;
 }
 
@@ -17,7 +17,7 @@
     Roboto,
     Helvetica,
     Arial,
-    sans-serif !important;
+    sans-serif;
 }
 
 body {

@@ -3,17 +3,29 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 </script>
 
 <template>
-  <div class="theme-switcher-container">
-    <ThemeSwitcher />
-  </div>
+  <header class="app-header">
+      <h1 class="title">Mythic Klass</h1>
+      <ThemeSwitcher class="theme-switcher-container" />
+  </header>
   <router-view />
 </template>
 
-<style>
-.theme-switcher-container {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
+<style scoped>
+.app-header {
+  position: relative;
+  width: 100%;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 500;
+}
+
+.title {
+  font-size: var(--font-title);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 0;
+  padding: 0;
 }
 </style>
