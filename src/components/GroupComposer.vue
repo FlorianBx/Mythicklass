@@ -23,6 +23,12 @@ const checkSlotMove = (evt: any) => {
   return evt.to && evt.relatedContext.list.length < 1
 }
 
+const onSpecAdded = (evt: any, slotIndex: number) => {
+  if (groupSlots.value[slotIndex].length > 1) {
+    groupSlots.value[slotIndex] = [groupSlots.value[slotIndex][groupSlots.value[slotIndex].length - 1]]
+  }
+}
+
 onMounted(async () => {
   try {
     const cached = localStorage.getItem(CACHE_KEY)
@@ -109,7 +115,7 @@ onMounted(async () => {
 
           <div class="drop-zone">
             <VueDraggable v-for="(slot, index) in groupSlots" :key="index" v-model="groupSlots[index]" :animation="200"
-              :group="{ name: 'specs' }" @move="checkSlotMove" class="slot-draggable">
+              :group="{ name: 'specs' }" @move="checkSlotMove" @add="(evt) => onSpecAdded(evt, index)" class="slot-draggable">
               <Card class="slot-card" :class="{ filled: slot.length > 0 }">
                 <template #content>
                   <div class="slot-content">
