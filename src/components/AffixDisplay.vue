@@ -63,7 +63,7 @@ onMounted(async () => {
 
 <style scoped>
 .affix-container {
-  padding: 2rem 1rem;
+  padding: 6rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }

@@ -55,8 +55,8 @@ const toggle = (event: Event) => {
 
 <style scoped>
 :deep(.p-button) {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 6.5rem;
+  height: 6.5rem;
 }
 
 :deep(.p-button .pi) {

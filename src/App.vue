@@ -4,7 +4,7 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 
 <template>
   <header class="app-header">
-      <h1 class="title">Mythic Klass</h1>
+      <h1 class="title"><span class="title-action">Mythic</span>Klass</h1>
       <ThemeSwitcher class="theme-switcher-container" />
   </header>
   <router-view />
@@ -24,8 +24,13 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
 .title {
   font-size: var(--font-title);
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: .1em !important;
+  text-transform: uppercase;
   margin: 0;
   padding: 0;
+}
+
+.title-action {
+  color: var(--p-info-color);
 }
 </style>

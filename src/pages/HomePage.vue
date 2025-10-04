@@ -20,6 +20,7 @@ import GroupComposer from '@/components/GroupComposer.vue'
 
 h1 {
   text-align: center;
+  margin-top: 4rem;
   margin-bottom: 2rem;
   font-size: var(--font-title);
 }
