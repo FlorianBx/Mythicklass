@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "/api/affix-eu"
+  to = "https://mythicpl.us/affix-eu"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/wow-icons/*"
+  to = "https://wow.zamimg.com/images/wow/icons/large/:splat"
+  status = 200
+  force = true
