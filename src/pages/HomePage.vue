@@ -1,27 +1,69 @@
 <script setup lang="ts">
-import { useQuery } from '@pinia/colada'
-import { WOW_CLASS_SLUGS, fetchWowClassData } from '@/composables/useWowClass'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import AffixDisplay from '@/components/AffixDisplay.vue'
+import { WOW_CLASS_SLUGS, fetchWowClassData, type WowClassData } from '@/composables/useWowClass'
 
-const { state } = useQuery({
-  key: ['wow-classes'],
-  query: async () => {
+const router = useRouter()
+const classes = ref<WowClassData[]>([])
+const loading = ref(true)
+const error = ref(false)
+
+const CACHE_KEY = 'wow-classes-cache'
+const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000
+
+onMounted(async () => {
+  try {
+    const cached = localStorage.getItem(CACHE_KEY)
+
+    if (cached) {
+      const { data, timestamp } = JSON.parse(cached)
+
+      if (Date.now() - timestamp < ONE_WEEK_MS) {
+        classes.value = data
+        loading.value = false
+        return
+      }
+    }
+
     const results = await Promise.all(WOW_CLASS_SLUGS.map((slug) => fetchWowClassData(slug)))
-    return results
-  },
-  staleTime: 1000 * 60 * 60,
+    classes.value = results
+
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({
+        data: results,
+        timestamp: Date.now(),
+      }),
+    )
+  } catch {
+    error.value = true
+  } finally {
+    loading.value = false
+  }
 })
+
+const navigateToClass = (slug: string) => {
+  router.push({ name: 'class-detail', params: { classSlug: slug } })
+}
 </script>
 
 <template>
   <div class="container">
+    <AffixDisplay />
     <h1>World of Warcraft Classes</h1>
 
-    <div v-if="state.status === 'pending'" class="loading">Loading classes...</div>
+    <div v-if="loading" class="loading">Loading classes...</div>
 
-    <div v-else-if="state.status === 'error'" class="error">Failed to load classes</div>
+    <div v-else-if="error" class="error">Failed to load classes</div>
 
     <div v-else class="class-grid">
-      <div v-for="wowClass in state.data" :key="wowClass.slug" class="class-card" @click="$router.push({ name: 'class-detail', params: { classSlug: wowClass.slug } })">
+      <div
+        v-for="wowClass in classes"
+        :key="wowClass.slug"
+        class="class-card"
+        @click="navigateToClass(wowClass.slug)"
+      >
         <img :src="wowClass.iconUrl" :alt="wowClass.name" class="class-icon" />
         <h3 :style="{ color: wowClass.color }">{{ wowClass.name }}</h3>
       </div>
@@ -39,18 +81,18 @@ const { state } = useQuery({
 h1 {
   text-align: center;
   margin-bottom: 2rem;
-  font-size: 2.5rem;
+  font-size: var(--font-title);
 }
 
 .loading,
 .error {
   text-align: center;
   padding: 2rem;
-  font-size: 1.2rem;
+  font-size: var(--font-body-large);
 }
 
 .error {
-  color: #ef4444;
+  color: var(--p-error-color);
 }
 
 .class-grid {
@@ -67,13 +109,14 @@ h1 {
   gap: 1rem;
   padding: 1rem;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--p-surface-100);
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .class-card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--p-surface-200);
 }
 
 .class-icon {
@@ -84,7 +127,7 @@ h1 {
 
 .class-card h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: var(--font-body);
   font-weight: 600;
   text-align: center;
 }
